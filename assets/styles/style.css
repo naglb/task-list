@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --bg-color: #ffffff;
+    --button-color: #ffffff;
+    --text-color: #000000;
+    --button-bg: #4F75FF;
+    --font-primary: "Inter", sans-serif;
+    --font-p-weight: 500;
+    --checkbox-border-color: #8b8c89;
+    --checkbox-checked-color: #274c77;
+    --checkbox-hover-color: #a3cef1;
+    --checkbox-disabled-bg-color: #d9d9d9;
+}
+
+.title-page {
+    display: flex;
+    place-content: center;
+    font-family: var(--font-primary);
+    font-weight: var(--font-p-weight);
+    font-size: 48px;
+}
+
+.input-container {
+    display: flex;
+    place-content: center;
+    font-family: var(--font-primary);
+    font-size: 20px;
+}
+
+#task-box {
+    min-height: 50px;
+    max-width: 150px;
+    padding: 0 1rem;
+    color: 0000;
+    font-size: 15px;
+    border: 1px solid #5e4dcd;
+    border-radius: 8px 0 0 8px;
+    background-color: transparent;
+}
+
+#task-box:focus {
+    border-color: #3898EC;
+    outline: none;
+}
+
+#add-button {
+    font-family: var(--font-primary);
+    min-height: 50px;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background-color: #5e4dcd;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+}
+
+#add-button:hover {
+    background-color: #5e5dcd;
+}
+
+.current-tasks {
+    display: flex;
+    place-content: center;
+    padding-top: 20px;
+    font-family: var(--font-primary);
+}
+
+.task-text {
+    font-size: 40px;
+    margin-right: 10px;
+}
+
+.delete-btn {
+    place-self: center;
+    display: flex;
+    place-content: center;
+    margin-left: 10px;
+    padding: 10px;
+    margin: 4px;
+    border-radius: 4px;
+}
+
+.edit-btn {
+    place-self: center;
+    display: flex;
+    place-content: center;
+    margin-left: 10px;
+    padding: 10px;
+    margin: 4px;
+    border-radius: 4px;
+}
+
+/* .done-btn {
+    display: flex;
+    place-content: center;
+    margin-left: 10px;
+    padding: 10px;
+    margin: 4px;
+    border-radius: 4px;
+}  */
+
+input[type="checkbox"] {
+    place-self: center;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    margin: 6px;
+    padding: 0;
+    border: 2px solid var(--checkbox-border-color);
+    appearance: none;
+    background-color: transparent;
+    outline: none;
+    transition: outline 0.1s;
+}
+
+input[type="checkbox"]:checked {
+    background-size: cover;
+    padding: 2px;
+}
+
+input[type="checkbox"]:not(:disabled):checked {
+    border-color: var(--checkbox-checked-color);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 32 32" xml:space="preserve"><path style="fill: %23274c77" d="M11.941,28.877l-11.941-11.942l5.695-5.696l6.246,6.246l14.364-14.364L32,8.818"/></svg>');
+}
+
+input[type="checkbox"]:disabled {
+    background-color: var(--checkbox-disabled-bg-color);
+}
+
+input[type="checkbox"]:disabled:checked {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 32 32" xml:space="preserve"><path style="fill: %238b8c89" d="M11.941,28.877l-11.941-11.942l5.695-5.696l6.246,6.246l14.364-14.364L32,8.818"/></svg>');
+}
+
+@media (hover: hover) {
+    input[type="checkbox"]:not(:disabled):hover {
+      background-color: var(--checkbox-hover-color);
+      outline: 2px solid var(--checkbox-hover-color);
+      transform: scale(1);
+    }
+}
+
+.task-text.done {
+    text-decoration: line-through;
+}

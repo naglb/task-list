@@ -41,7 +41,7 @@ function addTaskToList(text) {
 }
 
 // deletes the selected task + the div it's in
-function deleteTask(element) {
+function deleteTask() {
     console.log("deleteTask function called")
     // adding confirm deletion for tasks
     const confirmDelete = confirm("Are you sure you want to delete this task?");

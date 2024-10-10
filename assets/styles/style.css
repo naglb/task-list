@@ -63,14 +63,17 @@
 
 .current-tasks {
     display: flex;
+    align-items: auto;
     place-content: center;
     padding-top: 20px;
     font-family: var(--font-primary);
 }
 
 .task-text {
-    font-size: 40px;
+    align-self: center;
+    font-size: 50px;
     margin-right: 10px;
+    margin-left: 10px;
 }
 
 .delete-btn {

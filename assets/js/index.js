@@ -51,19 +51,19 @@ function deleteTask(element) {
     }
 }
 
-// marking a task as done
-function doneTask() {
-    console.log("doneTask fucntion called")
-    const taskText = this.closest('.current-tasks').querySelector('.task-text');
-    taskText.classList.toggle('done');
-    console.log("Task marked as done");
-}
-
 // editing a task
 function editTask() {
     console.log("editTask func called");
     const taskItem = this.closest('.current-tasks');
     const taskText = taskItem.querySelector('.task-text');
+    const checkbox = taskItem.querySelector('.done-btn');
+
+    // Check if the task is completed (checkbox is checked)
+    if (checkbox.checked) {
+        console.log("Cannot edit completed task");
+        return; // Exit the function early if the task is completed
+    }
+
     const currentText = taskText.textContent;
 
     // Create an input field
@@ -79,28 +79,42 @@ function editTask() {
     // Add event listener for when editing is done (e.g., pressing Enter)
     inputField.addEventListener('keyup', function(e) {
         if (e.key === 'Enter') {
-            const newText = inputField.value.trim();
-            if (newText) {
-                const newTaskText = document.createElement('span');
-                newTaskText.className = 'task-text';
-                newTaskText.textContent = newText;
-                inputField.replaceWith(newTaskText);
-            }
+            finishEditing(inputField, taskText);
         }
     });
 
     // Add event listener for losing focus (clicking outside)
     inputField.addEventListener('blur', function() {
-        const newText = inputField.value.trim();
-        if (newText) {
-            const newTaskText = document.createElement('span');
-            newTaskText.className = 'task-text';
-            newTaskText.textContent = newText;
-            inputField.replaceWith(newTaskText);
-        } else {
-            inputField.replaceWith(taskText);
-        }
+        finishEditing(inputField, taskText);
     });
+}
+
+// Helper function to finish editing
+function finishEditing(inputField, taskText) {
+    const newText = inputField.value.trim();
+    if (newText) {
+        const newTaskText = document.createElement('span');
+        newTaskText.className = 'task-text';
+        newTaskText.textContent = newText;
+        inputField.replaceWith(newTaskText);
+    } else {
+        inputField.replaceWith(taskText);
+    }
+}
+
+// Function to mark a task as done
+function doneTask() {
+    const taskItem = this.closest('.current-tasks');
+    const taskText = taskItem.querySelector('.task-text');
+    const editBtn = taskItem.querySelector('.edit-btn');
+
+    if (this.checked) {
+        taskText.style.textDecoration = 'line-through';
+        editBtn.disabled = true; // Disable the edit button
+    } else {
+        taskText.style.textDecoration = 'none';
+        editBtn.disabled = false; // Enable the edit button
+    }
 }
 
 // Event listener for the Enter key

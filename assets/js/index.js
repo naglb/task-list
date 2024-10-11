@@ -1,4 +1,4 @@
-// targeting the id's of html elements
+// creating variables for html ID elements
 const taskInput = document.querySelector("#task-box");
 const addButton = document.querySelector("#add-button");
 const taskList = document.querySelector("#task-list");
@@ -28,9 +28,9 @@ function addTaskToList(text) {
     taskItem.innerHTML = `
         <input type="checkbox" class="done-btn">
         <span class="task-text">${text}</span>
-        <button class="delete-btn">Delete</button>
-        <button class="edit-btn">Edit</button>
-    `;
+        <button class="delete-btn"><img src="assets/images/trash-bin-trash-svgrepo-com.svg">
+        <button class="edit-btn"><img src="assets/images/edit-svgrepo-com.svg"></button>
+        `;
     
     taskList.appendChild(taskItem);
 
@@ -107,13 +107,18 @@ function doneTask() {
     const taskItem = this.closest('.current-tasks');
     const taskText = taskItem.querySelector('.task-text');
     const editBtn = taskItem.querySelector('.edit-btn');
+    const editImg = editBtn.querySelector('img');
 
     if (this.checked) {
         taskText.style.textDecoration = 'line-through';
         editBtn.disabled = true; // Disable the edit button
+        editImg.style.opacity = '0.5'; // grey out edit svg
+        editImg.style.cursor = 'not-allowed';
     } else {
         taskText.style.textDecoration = 'none';
         editBtn.disabled = false; // Enable the edit button
+        editImg.style.opacity = '1'; // Edit svg full opacity
+        editImg.style.cursor = 'pointer';
     }
 }
 
